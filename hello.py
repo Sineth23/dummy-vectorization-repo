@@ -127,11 +127,7 @@ def main():
 
         # Step C: Handle rename
         # Typically remove old path embeddings, then add new path
-        for r_op in rename_operations:
-            old_path = r_op.get("old_path")
-            new_path = r_op.get("new_path")
-            rename_score = r_op.get("rename_score", "")
-            print(f"Rename: old='{old_path}' -> new='{new_path}' (score={rename_score})")
+      
 
             # 1) Remove old
             if old_path:
