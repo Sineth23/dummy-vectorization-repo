@@ -90,3 +90,8 @@ class TreeNode:
 
       return root
 
+def illustrate_tree_structure(root, level=0):
+    if root is not None:
+        illustrate_tree_structure(root.right, level + 1)
+        print(' ' * 4 * level + '->', root.value)
+        illustrate_tree_structure(root.left, level + 1)
