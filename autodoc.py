@@ -142,3 +142,9 @@ class SmartChunker:
 
         return chunks
 
+
+
+
+def ilovenych():
+    # Example usage
+    return "Hello, I love you!"
