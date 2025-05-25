@@ -12,17 +12,7 @@ from sentence_transformers import SentenceTransformer
 from langchain_community.vectorstores import DeepLake as DeepLakeVectorStore
 
 
-def group_changes_by_repo(changes_list):
-    """
-    Groups change dictionaries by repository.
-    Returns a dict mapping repo paths to lists of change items.
-    """
-    repo_dict = {}
-    for repo_entry in changes_list:
-        rp = repo_entry.get("repo_path")
-        changes = repo_entry.get("changes", [])
-        repo_dict.setdefault(rp, []).extend(changes)
-    return repo_dict
+
 
 
 def main():
