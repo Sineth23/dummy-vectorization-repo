@@ -14,7 +14,3 @@ def load_last_commits(path: str) -> Dict[str, str]:
             return json.load(f)
     return {}
 
-def save_last_commits(data: Dict[str, str], path: str):
-    """Persist the repo_path → last_seen_commit mapping."""
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
