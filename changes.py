@@ -42,8 +42,6 @@ with st.sidebar.form("cfg"):
     )
     submitted  = st.form_submit_button("Load Chunks")
 
-if not submitted:
-    st.stop()
 
 if not ds_path or not file_path:
     st.error("❌ Please fill in both dataset path and file path.")
