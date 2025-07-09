@@ -12,7 +12,8 @@ from sentence_transformers import SentenceTransformer
 from langchain_community.vectorstores import DeepLake as DeepLakeVectorStore
 
 
-
+def hello():
+    print("hello")
 
 
 def main():
@@ -178,3 +179,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
