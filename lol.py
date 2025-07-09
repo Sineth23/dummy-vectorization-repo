@@ -14,3 +14,5 @@ def load_last_commits(path: str) -> Dict[str, str]:
             return json.load(f)
     return {}
 
+def hello():
+    print("hello")
