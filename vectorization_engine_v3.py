@@ -147,30 +147,168 @@ class EnhancedVectorizer:
         }
         return cloud_config
 
-def main():
-    """Main function for testing - Enhanced with AI features"""
-    config = {
-        "model": "ai_enhanced", 
-        "batch_size": 256, 
-        "optimization": "ai_enhanced",
-        "ai_model": "gpt-4-vectorizer",
-        "ml_enabled": True,
-        "async_enabled": True,
-        "security_enabled": True
+# Enhanced Vectorization Engine v3
+# This file has been updated with new functionality
+
+import numpy as np
+from typing import Dict, List, Any, Optional
+import json
+import logging
+from datetime import datetime
+
+class VectorizationEngineV3:
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.logger = logging.getLogger(__name__)
+        self.vector_cache = {}
+    
+    def vectorize_text(self, text: str, model_name: str = "default") -> np.ndarray:
+        """Vectorize text using specified model"""
+        try:
+            # Simulate vectorization
+            vector = np.random.random(384)  # 384-dimensional vector
+            self.vector_cache[text[:50]] = vector  # Cache first 50 chars as key
+            
+            self.logger.info(f"Vectorized text with model: {model_name}")
+            return vector
+            
+        except Exception as e:
+            self.logger.error(f"Error vectorizing text: {e}")
+            return np.zeros(384)
+    
+    def batch_vectorize(self, texts: List[str], 
+                       model_name: str = "default") -> List[np.ndarray]:
+        """Vectorize multiple texts in batch"""
+        vectors = []
+        for text in texts:
+            vector = self.vectorize_text(text, model_name)
+            vectors.append(vector)
+        
+        self.logger.info(f"Batch vectorized {len(texts)} texts")
+        return vectors
+    
+    def similarity_search(self, query_vector: np.ndarray, 
+                         candidate_vectors: List[np.ndarray], 
+                         top_k: int = 5) -> List[Dict[str, Any]]:
+        """Find most similar vectors"""
+        try:
+            similarities = []
+            for i, candidate in enumerate(candidate_vectors):
+                similarity = np.dot(query_vector, candidate) / (
+                    np.linalg.norm(query_vector) * np.linalg.norm(candidate)
+                )
+                similarities.append({
+                    "index": i,
+                    "similarity": similarity,
+                    "vector": candidate
+                })
+            
+            # Sort by similarity and return top_k
+            similarities.sort(key=lambda x: x["similarity"], reverse=True)
+            return similarities[:top_k]
+            
+        except Exception as e:
+            self.logger.error(f"Error in similarity search: {e}")
+            return []
+    
+    def update_model(self, model_name: str, new_config: Dict[str, Any]) -> bool:
+        """Update model configuration"""
+        try:
+            if model_name not in self.config.get("models", {}):
+                self.config.setdefault("models", {})[model_name] = {}
+            
+            self.config["models"][model_name].update(new_config)
+            self.logger.info(f"Updated model: {model_name}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Error updating model {model_name}: {e}")
+            return False
+    
+    def get_statistics(self) -> Dict[str, Any]:
+        """Get engine statistics"""
+        return {
+            "cache_size": len(self.vector_cache),
+            "models": list(self.config.get("models", {}).keys()),
+            "config": self.config,
+            "timestamp": datetime.now().isoformat()
+        }
+
+# New utility function for advanced vectorization
+def advanced_vectorization_pipeline(texts: List[str], 
+                                   config: Dict[str, Any]) -> Dict[str, Any]:
+    """Advanced vectorization pipeline with preprocessing and postprocessing"""
+    engine = VectorizationEngineV3(config)
+    
+    # Preprocessing
+    processed_texts = []
+    for text in texts:
+        # Basic preprocessing
+        processed = text.strip().lower()
+        if len(processed) > 0:
+            processed_texts.append(processed)
+    
+    # Vectorization
+    vectors = engine.batch_vectorize(processed_texts)
+    
+    # Postprocessing
+    results = {
+        "vectors": vectors,
+        "texts": processed_texts,
+        "statistics": engine.get_statistics(),
+        "processing_time": datetime.now().isoformat()
     }
-    vectorizer = EnhancedVectorizer(config)
     
-    # Test new AI features
-    vectorizer.new_optimization_feature()
-    vectorizer.new_caching_system()
-    vectorizer.performance_monitoring()
-    vectorizer.ai_learning_engine()
-    vectorizer.ml_prediction_engine()
-    vectorizer.new_async_processing_engine()  # New function call
-    vectorizer.advanced_security_features()  # New function call
-    vectorizer.cloud_integration_engine()  # New function call
+    return results
+
+# Enhanced similarity calculation
+def calculate_semantic_similarity(vector1: np.ndarray, 
+                                 vector2: np.ndarray, 
+                                 method: str = "cosine") -> float:
+    """Calculate semantic similarity between two vectors"""
+    if method == "cosine":
+        return np.dot(vector1, vector2) / (
+            np.linalg.norm(vector1) * np.linalg.norm(vector2)
+        )
+    elif method == "euclidean":
+        return 1 / (1 + np.linalg.norm(vector1 - vector2))
+    elif method == "manhattan":
+        return 1 / (1 + np.sum(np.abs(vector1 - vector2)))
+    else:
+        raise ValueError(f"Unknown similarity method: {method}")
+
+def main():
+    """Test the enhanced vectorization engine"""
+    config = {
+        "models": {
+            "default": {"dimension": 384, "type": "transformer"},
+            "fast": {"dimension": 256, "type": "linear"}
+        },
+        "cache_enabled": True,
+        "batch_size": 32
+    }
     
-    print("Enhanced vectorization engine v3.3 ready with AI, ML, and advanced features!")
+    engine = VectorizationEngineV3(config)
+    
+    # Test texts
+    texts = [
+        "This is a test document for vectorization",
+        "Another document with different content",
+        "Third document for testing purposes"
+    ]
+    
+    # Vectorize
+    vectors = engine.batch_vectorize(texts)
+    print(f"Vectorized {len(vectors)} texts")
+    
+    # Test similarity search
+    query_vector = vectors[0]
+    results = engine.similarity_search(query_vector, vectors, top_k=2)
+    print(f"Similarity search results: {len(results)} matches")
+    
+    # Get statistics
+    stats = engine.get_statistics()
+    print(f"Engine statistics: {stats}")
 
 if __name__ == "__main__":
     main() 
