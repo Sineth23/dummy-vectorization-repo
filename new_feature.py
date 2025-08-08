@@ -166,8 +166,18 @@ def verify_change_detection():
         "purpose": "testing_change_detection"
     }
 
+# ANOTHER NEW FUNCTION ADDED AFTER REFERENCE POINTS WERE CREATED
+def demonstrate_change_detection():
+    """This function was added AFTER reference points were created"""
+    print("This change should be detected!")
+    return {
+        "detection_test": "success",
+        "added_after_reference": True
+    }
+
 if __name__ == "__main__":
     new_function()
     another_new_function()
     vectorized_function()
-    verify_change_detection()  # Call the new function 
+    verify_change_detection()  # Call the new function
+    demonstrate_change_detection()  # Call the new function 

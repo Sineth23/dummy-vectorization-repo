@@ -157,6 +157,16 @@ def analyze_ai_performance(engine: AIEngine) -> Dict[str, Any]:
     
     return analysis
 
+# NEW FUNCTION ADDED FOR CHANGE DETECTION TESTING
+def test_change_detection_workflow():
+    """This function was added to test the change detection workflow"""
+    print("Change detection workflow test function!")
+    return {
+        "test_status": "success",
+        "workflow": "change_detection",
+        "timestamp": datetime.now().isoformat()
+    }
+
 if __name__ == "__main__":
     # Example usage
     config = {
@@ -166,4 +176,5 @@ if __name__ == "__main__":
     }
     
     engine = AIEngine(config)
-    print("AI Engine initialized successfully!") 
+    print("AI Engine initialized successfully!")
+    test_change_detection_workflow()  # Call the new function 
