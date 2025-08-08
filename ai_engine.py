@@ -177,6 +177,17 @@ def second_change_detection_test():
         "timestamp": datetime.now().isoformat()
     }
 
+# THIRD NEW FUNCTION ADDED FOR CHANGE DETECTION TESTING
+def third_change_detection_test():
+    """This function was added for the third change detection test"""
+    print("Third change detection test function!")
+    return {
+        "test_number": 3,
+        "status": "success",
+        "timestamp": datetime.now().isoformat(),
+        "purpose": "third_test"
+    }
+
 if __name__ == "__main__":
     # Example usage
     config = {
@@ -188,4 +199,5 @@ if __name__ == "__main__":
     engine = AIEngine(config)
     print("AI Engine initialized successfully!")
     test_change_detection_workflow()  # Call the new function
-    second_change_detection_test()  # Call the second new function 
+    second_change_detection_test()  # Call the second new function
+    third_change_detection_test()  # Call the third new function 

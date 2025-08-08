@@ -185,10 +185,22 @@ def second_verification_function():
         "timestamp": datetime.now().isoformat()
     }
 
+# THIRD NEW FUNCTION ADDED FOR CHANGE DETECTION TESTING
+def third_verification_function():
+    """This is the third function added for change detection testing"""
+    print("Third verification function added!")
+    return {
+        "verification_number": 3,
+        "status": "verified",
+        "timestamp": datetime.now().isoformat(),
+        "purpose": "third_test"
+    }
+
 if __name__ == "__main__":
     new_function()
     another_new_function()
     vectorized_function()
     verify_change_detection()  # Call the new function
     second_verification_function()  # Call the second new function
+    third_verification_function()  # Call the third new function
     demonstrate_change_detection()  # Call the new function 
