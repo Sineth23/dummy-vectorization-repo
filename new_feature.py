@@ -175,9 +175,20 @@ def demonstrate_change_detection():
         "added_after_reference": True
     }
 
+# SECOND NEW FUNCTION ADDED FOR CHANGE DETECTION TESTING
+def second_verification_function():
+    """This is the second function added for change detection testing"""
+    print("Second verification function added!")
+    return {
+        "verification_number": 2,
+        "status": "verified",
+        "timestamp": datetime.now().isoformat()
+    }
+
 if __name__ == "__main__":
     new_function()
     another_new_function()
     vectorized_function()
     verify_change_detection()  # Call the new function
+    second_verification_function()  # Call the second new function
     demonstrate_change_detection()  # Call the new function 
