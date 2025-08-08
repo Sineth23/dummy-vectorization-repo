@@ -188,6 +188,17 @@ def third_change_detection_test():
         "purpose": "third_test"
     }
 
+# FOURTH NEW FUNCTION ADDED FOR INCREMENTAL UPDATER TESTING
+def fourth_change_detection_test():
+    """This function was added to test the fixed incremental updater"""
+    print("Fourth change detection test function!")
+    return {
+        "test_number": 4,
+        "status": "success",
+        "timestamp": datetime.now().isoformat(),
+        "purpose": "test_fixed_incremental_updater"
+    }
+
 if __name__ == "__main__":
     # Example usage
     config = {
@@ -200,4 +211,5 @@ if __name__ == "__main__":
     print("AI Engine initialized successfully!")
     test_change_detection_workflow()  # Call the new function
     second_change_detection_test()  # Call the second new function
-    third_change_detection_test()  # Call the third new function 
+    third_change_detection_test()  # Call the third new function
+    fourth_change_detection_test()  # Call the fourth new function 
